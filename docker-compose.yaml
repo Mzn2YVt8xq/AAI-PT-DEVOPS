@@ -1,0 +1,60 @@
+version: '3'
+services:
+  primary:
+    build:
+      context: ./db
+    container_name: postgres_primary
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_HOST_AUTH_METHOD: trust
+      POSTGRES_DB: ${DB_DATABASE}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_REPL_USER: ${DB_REPL_USER}
+      DB_REPL_PASSWORD: ${DB_REPL_PASSWORD}
+    ports:
+      - "5432:5432"
+    volumes:
+      - primary_data:/var/lib/postgresql/data
+    networks:
+      - postgres_network
+
+  replica:
+    build:
+      context: ./db_repl
+    container_name: postgres_replica
+    environment:
+      DB_REPL_USER: ${DB_REPL_USER}
+      DB_REPL_PASSWORD: ${DB_REPL_PASSWORD}
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
+    depends_on:
+      - primary
+    ports:
+      - "5433:5432"
+    volumes:
+      - replica_data:/var/lib/postgresql/data
+    networks:
+      - postgres_network
+
+  bot:
+    build:
+      context: ./bot
+    container_name: telegram_bot
+    environment:
+      DB_HOST: ${DB_HOST}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_DATABASE}
+    depends_on:
+      - primary
+    networks:
+      - postgres_network
+
+networks:
+  postgres_network:
+    driver: bridge
+
+volumes:
+  primary_data:
+  replica_data:
