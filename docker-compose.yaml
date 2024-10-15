@@ -11,7 +11,7 @@ services:
       - POSTGRES_HOST_AUTH_METHOD=trust
       - DB_REPL_USER=${DB_REPL_USER}
       - DB_REPL_PASSWORD=${DB_REPL_PASSWORD}
-      - DB_REPL_HOST=${DB_REPL_HOST}.my_network
+      - DB_REPL_HOST=${DB_REPL_HOST}
       - DB_PORT=${DB_PORT}
       - DB_DATABASE=${DB_DATABASE}
     container_name: db_1
@@ -20,7 +20,7 @@ services:
     build: ./db_repl
     container_name: db_repl_1
     environment:
-      - DB_HOST=${DB_HOST}.my_network
+      - DB_HOST=${DB_HOST}
       - DB_PORT=${DB_PORT}
       - DB_REPL_HOST=${DB_REPL_HOST}
       - DB_REPL_PORT=${DB_REPL_PORT}
