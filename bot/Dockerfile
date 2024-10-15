@@ -1,10 +1,9 @@
-FROM python:3.9-slim
+FROM python:3.10
 
 WORKDIR /app
 
-COPY ./bot.py .
-COPY ./requirements.txt .
+COPY . .
 
 RUN pip install --no-cache-dir -r requirements.txt
 
-CMD ["python", "bot.py"]
+CMD ["python", "./bot.py"]
