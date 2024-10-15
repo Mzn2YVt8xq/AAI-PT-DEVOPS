@@ -1,0 +1,4 @@
+DB_USER = "master_user"
+DB_PASSWORD = "Master_password10!"
+DB_REPL_USER = "slave_user"
+DB_REPL_PASSWORD = "Slave_password10!"

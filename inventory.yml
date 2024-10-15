@@ -1,0 +1,31 @@
+all:
+  hosts:
+    bot:
+      ansible_user: root
+      ansible_ssh_pass: Debian12
+      ansible_host: 192.168.0.24
+    db:
+      ansible_user: root
+      ansible_ssh_pass: 12345
+      ansible_host: 192.168.0.22
+    db_repl:
+      ansible_user: root
+      ansible_ssh_pass: 12345
+      ansible_host: 192.168.0.23
+
+  vars:
+    TOKEN: "7542027475:AAEgKuvwra5PDlQNhFWO1z-dTBtKSjJX7uw"
+    RM_HOST: "192.168.0.24"
+    RM_PORT: "22"
+    RM_USER: "root"
+    RM_PASSWORD: "12345"
+
+    DB_USER: "master_user"
+    DB_PASSWORD: "Master_password10!"
+    DB_HOST: "192.168.0.22"
+    DB_PORT: "5432"
+    DB_DATABASE: "db_data"
+    DB_REPL_USER: "slave_user"
+    DB_REPL_PASSWORD: "Slave_password10!"
+    DB_REPL_HOST: "192.168.0.23"
+    DB_REPL_PORT: "5432"
