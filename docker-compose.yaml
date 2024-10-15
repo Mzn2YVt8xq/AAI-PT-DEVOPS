@@ -14,11 +14,11 @@ services:
       - DB_REPL_HOST=${DB_REPL_HOST}.my_network
       - DB_PORT=${DB_PORT}
       - DB_DATABASE=${DB_DATABASE}
-    container_name: db
+    container_name: db_1
   db_repl:
     image: db_repl_image
     build: ./db_repl
-    container_name: db_repl
+    container_name: db_repl_1
     environment:
       - DB_HOST=${DB_HOST}.my_network
       - DB_PORT=${DB_PORT}
@@ -44,7 +44,7 @@ services:
       - DB_DATABASE=${DB_DATABASE}
     volumes:
       - pg_logs:/var/log/
-    container_name: bot
+    container_name: bot_1
 
 volumes:
   pg_data:
